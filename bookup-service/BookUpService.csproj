@@ -20,14 +20,12 @@
   <ItemGroup>
     <None Remove="Services\" />
     <None Remove="Models\" />
-    <None Remove="Repositories\" />
     <None Remove="Interfaces\" />
     <None Remove="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Models\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Data\" />
   </ItemGroup>

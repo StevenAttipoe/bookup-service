@@ -1,6 +1,6 @@
-﻿using bookup_service;
+﻿using System.ComponentModel;
+using bookup_service;
 using bookup_service.Interfaces;
-using bookup_service.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,12 +9,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Scan the assembly for repository classes and register them as services
-var repositoryAssembly = typeof(IRepository).Assembly;
+var ServiceAssembly = typeof(IService).Assembly;
 builder.Services.Scan(scan =>
-    scan.FromAssemblies(repositoryAssembly)
-        .AddClasses(classes => classes.AssignableTo<IRepository>())
+    scan.FromAssemblies(ServiceAssembly)
+        .AddClasses(classes => classes.AssignableTo<IService>())
         .AsImplementedInterfaces()
         .WithScopedLifetime()
+);
+
+// Add CORS to the container.
+var ClientOrigin = "ClientPolicy";
+builder.Services.AddCors(options =>
+    options.AddPolicy(name: ClientOrigin, policy => {
+            policy.WithOrigins("http://localhost:4200");
+         })
 );
 
 //Configure DbContext
@@ -37,6 +45,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(ClientOrigin);
 
 app.UseAuthorization();
 

@@ -23,12 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Repositories\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\bookup-service\BookUpService.csproj" />
   </ItemGroup>
 </Project>

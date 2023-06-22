@@ -1,7 +1,7 @@
 ﻿using System;
 namespace bookup_service.Interfaces
 {
-	public interface IRepository
+	public interface IService
 	{
 	}
 }

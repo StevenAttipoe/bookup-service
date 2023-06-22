@@ -1,15 +1,14 @@
 ﻿using System;
 using bookup_service.Interfaces;
 using bookup_service.Models;
-using Microsoft.EntityFrameworkCore;
 
-namespace bookup_service.Repositories
+namespace bookup_service.Services
 {
-	public class UserRepository: IUserRepository, IRepository
+	public class UserService: IUserService, IService
     {
-		private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
-        public UserRepository(ApplicationDbContext dbContext)
+        public UserService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -20,6 +19,5 @@ namespace bookup_service.Repositories
             _dbContext.SaveChanges();
         }
     }
-
 }
 

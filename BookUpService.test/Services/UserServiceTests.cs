@@ -1,5 +1,5 @@
 ﻿using bookup_service.Models;
-using bookup_service.Repositories;
+using bookup_service.Services;
 using Xunit;
 using Moq;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace BookUpService.test
 {
 
-    public class UserRepositoryTests
+    public class UserServiceTests
     {
         [Fact]
         public void CreateUser_Should_Add_User_To_DbSet_And_SaveChanges()
@@ -23,10 +23,10 @@ namespace BookUpService.test
             var dbContextMock = new Mock<ApplicationDbContext>();
             dbContextMock.Setup(db => db.Set<User>()).Returns(dbSetMock.Object);
 
-            var userRepository = new UserRepository(dbContextMock.Object);
+            var userService= new UserService(dbContextMock.Object);
 
             // Act
-            userRepository.CreateUser(user);
+            userService.CreateUser(user);
 
             // Assert
             dbSetMock.Verify(dbSet => dbSet.Add(user), Times.Once);

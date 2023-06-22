@@ -35,6 +35,7 @@ namespace bookup_service
 
 
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
 	}
 }
 

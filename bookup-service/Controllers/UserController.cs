@@ -4,21 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using bookup_service.Interfaces;
 using bookup_service.Models;
-using bookup_service.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bookup_service.Controllers;
 
-[Route("api/V1/[controller]")]
+[Route("api/v1/user")]
 [ApiController]
 public class UserController : ControllerBase
 {
 
-    private readonly IUserRepository userRepository;
+    private readonly IUserService UserService;
 
-    public UserController (IUserRepository userRepository, ApplicationDbContext applicationDbContext)
+    public UserController (IUserService UserService)
     {
-        this.userRepository = userRepository;
+        this.UserService = UserService;
     }
 
     [HttpPost(Name ="SignUp")]
@@ -26,8 +25,8 @@ public class UserController : ControllerBase
     [ProducesResponseType(400)]
     public ActionResult<string> SignUp([FromBody] User user)
     {
-        userRepository.CreateUser(user);
-        return Ok("Successfully created");
+        UserService.CreateUser(user);
+        return "Successfully created";
     }
 }
 

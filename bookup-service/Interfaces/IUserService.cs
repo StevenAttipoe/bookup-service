@@ -3,7 +3,7 @@ using bookup_service.Models;
 
 namespace bookup_service.Interfaces
 {
-	public interface IUserRepository
+	public interface IUserService
 	{
         void CreateUser(User user);
     }
