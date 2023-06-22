@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bookup_service.Dto.Request;
 using bookup_service.Interfaces;
 using bookup_service.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -20,13 +21,23 @@ public class UserController : ControllerBase
         this.UserService = UserService;
     }
 
-    [HttpPost(Name ="SignUp")]
+    [HttpPost]
+    [Route("signup")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     public ActionResult<string> SignUp([FromBody] User user)
     {
         UserService.CreateUser(user);
         return "Successfully created";
+    }
+
+    [HttpPost]
+    [Route("signin")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    public ActionResult<string> SignIn([FromBody] UserLogInDto userLogInDto)
+    {
+        return UserService.AuthenticateUser(userLogInDto).Item2;
     }
 }
 

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Moq.Protected;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using bookup_service.Configurations;
 
 namespace BookUpService.test
 {
@@ -23,7 +24,9 @@ namespace BookUpService.test
             var dbContextMock = new Mock<ApplicationDbContext>();
             dbContextMock.Setup(db => db.Set<User>()).Returns(dbSetMock.Object);
 
-            var userService= new UserService(dbContextMock.Object);
+            var jwtServiceMock = new Mock<JwtService>();
+
+            var userService = new UserService(dbContextMock.Object, jwtServiceMock.Object);
 
             // Act
             userService.CreateUser(user);

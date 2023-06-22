@@ -15,6 +15,11 @@ namespace bookup_service.Services
             this.applicationDbContext = applicationDbContext;
         }
 
+        public bool BookRoom(int room)
+        {
+            throw new NotImplementedException();
+        }
+
         public void CreateRoom(Room room)
         {
             applicationDbContext.Set<Room>().Add(room);
@@ -25,6 +30,12 @@ namespace bookup_service.Services
         {
             return applicationDbContext.Set<Room>().ToList();
         }
+
+        public bool ShowInterestInRoom(int id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
 

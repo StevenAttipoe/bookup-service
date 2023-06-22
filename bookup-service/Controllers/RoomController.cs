@@ -17,7 +17,8 @@ namespace bookup_service.Controllers
             this.RoomService = RoomService;
         }
 
-        [HttpPost(Name = "/signup")]
+        [HttpPost]
+        [Route("create")]
         [ProducesResponseType(204)]
         public ActionResult<string> CreateRoom([FromBody] Room room)
         {
@@ -25,7 +26,8 @@ namespace bookup_service.Controllers
             return "Successfully created";
         }
 
-        [HttpGet(Name = "get/all")]
+        [HttpGet]
+        [Route("get/all")]
         [ProducesResponseType(200)]
         public ActionResult<List<Room>> GetRoomsListings()
         {

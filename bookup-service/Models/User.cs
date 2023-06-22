@@ -6,7 +6,7 @@ namespace bookup_service.Models
 {
 	public class User
 	{
-        public User(long id, string? fullName, string? email, string? password)
+        public User(long id, string fullName, string email, string password)
         {
             Id = id;
             FullName = fullName;
@@ -19,16 +19,16 @@ namespace bookup_service.Models
         public long Id { get; set; }
 
         [Required]
-        public string? FullName { get; set; }
+        public string FullName { get; set; }
 
         [Required]
 		[EmailAddress]
         [MaxLength(50)]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
 		[Required]
 		[MinLength(6)]
-        public string? Password { get; set; }
+        public string Password { get; set; }
 
  	}
 }
