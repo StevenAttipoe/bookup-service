@@ -4,6 +4,8 @@ using Xunit;
 using Moq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Moq.Protected;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace BookUpService.test
 {
@@ -16,11 +18,9 @@ namespace BookUpService.test
             // Arrange
             var user = new User(0, "John Doe", "john.doe@mail.com", "password");
 
-            var configurationMock = new Mock<IConfiguration>();
-
-            var dbContextMock = new Mock<ApplicationDbContext>(configurationMock.Object);
-
             var dbSetMock = new Mock<DbSet<User>>();
+
+            var dbContextMock = new Mock<ApplicationDbContext>();
             dbContextMock.Setup(db => db.Set<User>()).Returns(dbSetMock.Object);
 
             var userRepository = new UserRepository(dbContextMock.Object);

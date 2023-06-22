@@ -9,6 +9,10 @@ namespace bookup_service
 	{
         protected readonly IConfiguration Configuration;
 
+        public ApplicationDbContext()
+        {
+        }
+
         public ApplicationDbContext(IConfiguration configuration)
         {
             Configuration = configuration;

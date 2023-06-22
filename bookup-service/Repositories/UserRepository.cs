@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace bookup_service.Repositories
 {
-
 	public class UserRepository: IUserRepository, IRepository
     {
 		private readonly ApplicationDbContext _dbContext;
