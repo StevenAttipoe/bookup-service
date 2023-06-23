@@ -25,19 +25,27 @@ public class UserController : ControllerBase
     [Route("signup")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
-    public ActionResult<string> SignUp([FromBody] User user)
+    public ActionResult<bool> SignUp([FromForm] User user)
     {
-        UserService.CreateUser(user);
-        return "Successfully created";
+        return UserService.CreateUser(user);
     }
 
     [HttpPost]
     [Route("signin")]
     [ProducesResponseType(204)]
-    [ProducesResponseType(400)]
-    public ActionResult<string> SignIn([FromBody] UserLogInDto userLogInDto)
+    [ProducesResponseType(401)]
+    public ActionResult<string> SignIn([FromForm] UserLogInDto userLogInDto)
     {
-        return UserService.AuthenticateUser(userLogInDto).Item2;
+        var authenticationResult = UserService.AuthenticateUser(userLogInDto);
+
+        if (authenticationResult.Item1)
+        {
+            return Ok(new { jwtToken = authenticationResult.Item2 });
+        }
+        else
+        {
+            return Unauthorized(authenticationResult.Item2);
+        }
     }
 }
 

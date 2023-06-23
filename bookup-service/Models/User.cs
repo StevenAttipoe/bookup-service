@@ -6,9 +6,12 @@ namespace bookup_service.Models
 {
 	public class User
 	{
-        public User(long id, string fullName, string email, string password)
+        public User()
         {
-            Id = id;
+        }
+
+        public User(string fullName, string email, string password)
+        {
             FullName = fullName;
             Email = email;
             Password = password;

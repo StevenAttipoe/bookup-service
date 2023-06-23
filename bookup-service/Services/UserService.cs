@@ -25,6 +25,7 @@ namespace bookup_service.Services
 
             if (user == null)
             {
+                return (false, "User not found for email");
                 throw new UserException("User not found for email");
             }
             else

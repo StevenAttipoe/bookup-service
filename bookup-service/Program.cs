@@ -42,28 +42,12 @@ var jwtSecretKey = builder.Configuration.GetValue<string>("JwtSettings:SecretKey
 
 // Add JWT service with custom options
 builder.Services.AddScoped<JwtService>(sp =>
-{
-    var issuer = "Book-Up-Service";
-    var audience = "Client-App";
-
-    return new JwtService(issuer, audience, jwtSecretKey!);
-});
-
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
-//    {
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateIssuer = true,
-//            ValidateAudience = true,
-//            ValidateLifetime = true,
-//            ValidateIssuerSigningKey = true,
-//            ValidIssuer = "Book-Up-Service",
-//            ValidAudience = "Client-App",
-//            IssuerSigningKey = new SymmetricSecurityKey(
-//                Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("JwtSettings:SecretKey")))
-//        };
-//    });
+    {
+        var issuer = "Book-Up-Service";
+        var audience = "Client-App";
+        return new JwtService(issuer, audience, jwtSecretKey!);
+    }
+);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
