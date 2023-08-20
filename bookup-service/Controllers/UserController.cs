@@ -24,8 +24,8 @@ public class UserController : ControllerBase
     [HttpPost]
     [Route("signup")]
     [ProducesResponseType(204)]
-    [ProducesResponseType(400)]
-    public ActionResult<bool> SignUp([FromForm] User user)
+    [ProducesResponseType(401)]
+    public bool SignUp([FromForm] User user)
     {
         return UserService.CreateUser(user);
     }

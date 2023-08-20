@@ -1,6 +1,7 @@
 ﻿using System;
 using bookup_service.Configurations;
 using bookup_service.Dto.Request;
+using bookup_service.Dto.Response;
 using bookup_service.Exception;
 using bookup_service.Interfaces;
 using bookup_service.Models;
@@ -12,11 +13,14 @@ namespace bookup_service.Services
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly JwtService _jwtService;
+        private readonly ILogger _logger;
 
-        public UserService(ApplicationDbContext dbContext, JwtService jwtService)
+
+        public UserService(ApplicationDbContext dbContext, JwtService jwtService, ILogger<UserService> logger)
         {
             _dbContext = dbContext;
             _jwtService = jwtService;
+            _logger = logger;
         }
 
         public (bool, string) AuthenticateUser(UserLogInDto userLogInDto)
@@ -45,6 +49,7 @@ namespace bookup_service.Services
         {
             _dbContext.Set<User>().Add(user);
             _dbContext.SaveChanges();
+            _logger.LogInformation("Successfully created user at {Timestamp}", DateTime.Now);
             return true;
         }
     }

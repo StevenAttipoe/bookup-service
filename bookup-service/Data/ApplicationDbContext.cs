@@ -29,7 +29,6 @@ namespace bookup_service
         {
 
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-
             base.OnModelCreating(builder);
         }
 

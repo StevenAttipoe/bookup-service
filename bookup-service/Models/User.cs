@@ -6,16 +6,6 @@ namespace bookup_service.Models
 {
 	public class User
 	{
-        public User()
-        {
-        }
-
-        public User(string fullName, string email, string password)
-        {
-            FullName = fullName;
-            Email = email;
-            Password = password;
-        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -33,6 +23,17 @@ namespace bookup_service.Models
 		[MinLength(6)]
         public string Password { get; set; }
 
- 	}
+        public User()
+        {
+        }
+
+        public User(string fullName, string email, string password)
+        {
+            FullName = fullName;
+            Email = email;
+            Password = password;
+        }
+
+    }
 }
 

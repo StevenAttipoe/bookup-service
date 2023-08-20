@@ -20,6 +20,11 @@ namespace bookup_service.Services
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Method <c>CreateRoom</c> creates a room room entity in the db.
+        /// </summary>
+        /// <param name="room">The room to create</param>
         public void CreateRoom(Room room)
         {
             applicationDbContext.Set<Room>().Add(room);
