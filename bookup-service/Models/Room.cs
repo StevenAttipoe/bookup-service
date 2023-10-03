@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace bookup_service.Models
 {
-	public class Room
+    public class Room
 	{
 
         [Key]
@@ -14,31 +14,23 @@ namespace bookup_service.Models
         [Required]
         public RoomType type { get; set; }
 
-        [Required]
-        public bool hasTv { get; set; }
+        //[Required]
+        //public long RoomFacilitiesId { get; set; }
 
         [Required]
-        public bool hasFridge { get; set; }
+        public int floor { get; set; }
 
         [Required]
-        public bool hasFan { get; set; }
+        public bool isBooked { get; set; }
 
-        [Required]
-        public bool hasKitchen { get; set; }
+        //public RoomFacilities Facilities { get; set; }
 
-        [Required]
-        public bool hasBathroom { get; set; }
-
-
-        public Room(long id, RoomType type, bool hasTv, bool hasFridge, bool hasFan, bool hasKitchen, bool hasBathroom)
+        public Room(long id, RoomType type, int floor, bool isBooked)
         {
-            Id = id;
+            this.Id = id;
             this.type = type;
-            this.hasTv = hasTv;
-            this.hasFridge = hasFridge;
-            this.hasFan = hasFan;
-            this.hasKitchen = hasKitchen;
-            this.hasBathroom = hasBathroom;
+            this.floor = floor;
+            this.isBooked = isBooked;
         }
     }
 }

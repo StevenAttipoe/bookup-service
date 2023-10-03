@@ -9,9 +9,10 @@ namespace bookup_service
 	{
         protected readonly IConfiguration Configuration;
 
-        public ApplicationDbContext()
-        {
-        }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public DbSet<RoomFacilities> RoomFacilities { get; set; }
+
 
         public ApplicationDbContext(IConfiguration configuration)
         {
@@ -32,9 +33,6 @@ namespace bookup_service
             base.OnModelCreating(builder);
         }
 
-
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Room> Rooms { get; set; }
-	}
+    }
 }
 

@@ -19,7 +19,6 @@ namespace bookup_service.Controllers
 
         [HttpPost]
         [Route("create")]
-        [ProducesResponseType(204)]
         public ActionResult<string> CreateRoom([FromBody] Room room)
         {
             RoomService.CreateRoom(room);
@@ -28,7 +27,6 @@ namespace bookup_service.Controllers
 
         [HttpGet]
         [Route("get/all")]
-        [ProducesResponseType(200)]
         public ActionResult<List<Room>> GetRoomsListings()
         {
             return RoomService.GetRooms();

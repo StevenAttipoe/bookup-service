@@ -23,8 +23,6 @@ public class UserController : ControllerBase
 
     [HttpPost]
     [Route("signup")]
-    [ProducesResponseType(204)]
-    [ProducesResponseType(401)]
     public bool SignUp([FromForm] User user)
     {
         return UserService.CreateUser(user);
@@ -32,8 +30,6 @@ public class UserController : ControllerBase
 
     [HttpPost]
     [Route("signin")]
-    [ProducesResponseType(204)]
-    [ProducesResponseType(401)]
     public ActionResult<string> SignIn([FromForm] UserLogInDto userLogInDto)
     {
         var authenticationResult = UserService.AuthenticateUser(userLogInDto);
